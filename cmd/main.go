@@ -48,7 +48,6 @@ func main() {
 			break
 		}
 
-		// Process the user's command based on the choice
 		switch input {
 		case "1":
 			err = filesystem.PrintDiskInfo()
