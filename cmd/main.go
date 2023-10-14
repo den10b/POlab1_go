@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-
+	var fileName string
 	reader := bufio.NewReader(os.Stdin)
 
 	for {
@@ -53,10 +53,10 @@ func main() {
 			err = filesystem.PrintDiskInfo()
 			if err != nil {
 				fmt.Println("Ошибка при PrintDiskInfo:", err)
-				os.Exit(1)
+				continue
 			}
 		case "2":
-			var fileName string
+
 			fmt.Println("Введите название файла: ")
 			_, err = fmt.Scanf("%s\n", &fileName)
 			if err != nil {
@@ -67,10 +67,10 @@ func main() {
 			err = files.CreateTextFile(fileName + ".txt")
 			if err != nil {
 				fmt.Println("Ошибка при CreateTextFile:", err)
-				os.Exit(1)
+				continue
 			}
 		case "3":
-			var fileName string
+
 			fmt.Println("Введите название файла: ")
 			_, err = fmt.Scanf("%s\n", &fileName)
 			if err != nil {
@@ -81,11 +81,11 @@ func main() {
 			err = files.WriteTextToFile(fileName + ".txt")
 			if err != nil {
 				fmt.Println("Ошибка при WriteTextToFile:", err)
-				os.Exit(1)
+				continue
 			}
 
 		case "4":
-			var fileName string
+
 			fmt.Println("Введите название файла: ")
 			_, err = fmt.Scanf("%s\n", &fileName)
 			if err != nil {
@@ -96,10 +96,10 @@ func main() {
 			err = files.ReadTextFromFile(fileName + ".txt")
 			if err != nil {
 				fmt.Println("Ошибка при ReadTextFromFile:", err)
-				os.Exit(1)
+				continue
 			}
 		case "5":
-			var fileName string
+
 			fmt.Println("Введите название файла: ")
 			_, err = fmt.Scanf("%s\n", &fileName)
 			if err != nil {
@@ -110,10 +110,10 @@ func main() {
 			err = files.DeleteFile(fileName)
 			if err != nil {
 				fmt.Println("Ошибка при DeleteFile:", err)
-				os.Exit(1)
+				continue
 			}
 		case "6":
-			var fileName string
+
 			fmt.Println("Введите название файла: ")
 			_, err = fmt.Scanf("%s\n", &fileName)
 			if err != nil {
@@ -124,10 +124,10 @@ func main() {
 			err = jason.CreateJSONFile(fileName + ".json")
 			if err != nil {
 				fmt.Println("Ошибка при CreateJSONFile:", err)
-				os.Exit(1)
+				continue
 			}
 		case "7":
-			var fileName string
+
 			fmt.Println("Введите название файла: ")
 			_, err = fmt.Scanf("%s\n", &fileName)
 			if err != nil {
@@ -138,10 +138,10 @@ func main() {
 			err = jason.WriteJSONToFile(fileName + ".json")
 			if err != nil {
 				fmt.Println("Ошибка при WriteJSONToFile:", err)
-				os.Exit(1)
+				continue
 			}
 		case "8":
-			var fileName string
+
 			fmt.Println("Введите название файла: ")
 			_, err = fmt.Scanf("%s\n", &fileName)
 			if err != nil {
@@ -152,10 +152,9 @@ func main() {
 			err = jason.ReadJSONFromFile(fileName + ".json")
 			if err != nil {
 				fmt.Println("Ошибка при ReadJSONFromFile:", err)
-				os.Exit(1)
+				continue
 			}
 		case "9":
-			var fileName string
 			fmt.Println("Введите название файла: ")
 			_, err = fmt.Scanf("%s\n", &fileName)
 			if err != nil {
@@ -166,10 +165,10 @@ func main() {
 			err = xml.CreateXMLFile(fileName + ".xml")
 			if err != nil {
 				fmt.Println("Ошибка при CreateXMLFile:", err)
-				os.Exit(1)
+				continue
 			}
 		case "10":
-			var fileName string
+
 			fmt.Println("Введите название файла: ")
 			_, err = fmt.Scanf("%s\n", &fileName)
 			if err != nil {
@@ -180,10 +179,10 @@ func main() {
 			err = xml.WriteXMLToFile(fileName + ".xml")
 			if err != nil {
 				fmt.Println("Ошибка при WriteXMLToFile:", err)
-				os.Exit(1)
+				continue
 			}
 		case "11":
-			var fileName string
+
 			fmt.Println("Введите название файла: ")
 			_, err = fmt.Scanf("%s\n", &fileName)
 			if err != nil {
@@ -194,19 +193,20 @@ func main() {
 			err = xml.ReadXMLFromFile(fileName + ".xml")
 			if err != nil {
 				fmt.Println("Ошибка при ReadXMLFromFile:", err)
-				os.Exit(1)
+				continue
 			}
 		case "12":
-			var fileName string
+
 			fmt.Println("Введите название файла: ")
 			_, err = fmt.Scanf("%s\n", &fileName)
 			if err != nil {
 				fmt.Println("Некорректный ввод")
 				continue
 			}
-			var archName string
+			archName := fileName
+
 			fmt.Println("Введите название архива: ")
-			_, err = fmt.Scanf("%s\n", &archName)
+			_, err = fmt.Scanf("%s\n", &fileName)
 			if err != nil {
 				fmt.Println("Некорректный ввод")
 				continue
@@ -215,10 +215,9 @@ func main() {
 			err = zipp.AddFileToZip(archName+".zip", fileName)
 			if err != nil {
 				fmt.Println("Ошибка при AddFileToZip:", err)
-				os.Exit(1)
+				continue
 			}
 		case "13":
-			var fileName string
 			fmt.Println("Введите название файла: ")
 			_, err = fmt.Scanf("%s\n", &fileName)
 			if err != nil {
@@ -229,7 +228,7 @@ func main() {
 			err = zipp.UnzipFile(fileName + ".zip")
 			if err != nil {
 				fmt.Println("Ошибка при UnzipFile:", err)
-				os.Exit(1)
+				continue
 			}
 		default:
 			fmt.Println("Выбран некорректный вариант")
