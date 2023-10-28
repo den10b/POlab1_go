@@ -9,7 +9,7 @@ import (
 
 func CreateXMLFile(filename string) error {
 	xmlData, _ := xml.MarshalIndent(domain.XMLData{Name: "Example", Value: 42}, "", "  ")
-	err := os.WriteFile(filename, xmlData, 0644)
+	err := os.WriteFile(filename, []byte(xml.Header+string(xmlData)), 0644)
 	if err != nil {
 		fmt.Println("Ошибка при создании XML файла:", err)
 		return err
@@ -25,13 +25,12 @@ func WriteXMLToFile(filename string) error {
 	fmt.Scanln(&data.Name)
 	fmt.Print("Значение: ")
 	fmt.Scanln(&data.Value)
-
 	xmlData, err := xml.MarshalIndent(data, "", "  ")
 	if err != nil {
 		fmt.Println("Ошибка при маршализации данных в XML:", err)
 		return err
 	}
-	err = os.WriteFile(filename, xmlData, 0644)
+	err = os.WriteFile(filename, []byte(xml.Header+string(xmlData)), 0644)
 	if err != nil {
 		fmt.Println("Ошибка при записи в XML файл:", err)
 		return err
